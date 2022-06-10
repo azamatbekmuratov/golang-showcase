@@ -15,4 +15,9 @@ func main() {
 	prms := []*int{&frst, &sec}
 	slc(&prms)
 
+	var a = []int{1, 2, 3, 4, 5}
+	b := a[2:]
+	b[0] = 0
+	
+
 }
