@@ -5,8 +5,7 @@ import (
 	"sync"
 )
 
-func generateNumbers(total int, ch chan<- int, wg *sync.WaitGroup) {
-	defer wg.Done()
+func generateNumbers(total int, ch chan<- int) {
 
 	for idx := 1; idx <= total; idx++ {
 		fmt.Printf("Generating number %d\n", idx)
@@ -14,11 +13,11 @@ func generateNumbers(total int, ch chan<- int, wg *sync.WaitGroup) {
 	}
 }
 
-func printNumbers(ch <-chan int, wg *sync.WaitGroup) {
+func printNumbers(idx int, ch <-chan int, wg *sync.WaitGroup) {
 	defer wg.Done()
 
 	for num := range ch {
-		fmt.Printf("read %d from channel\n", num)
+		fmt.Printf("channel %d read value %d from channel\n", idx, num)
 	}
 }
 
@@ -26,9 +25,11 @@ func main() {
 	var wg sync.WaitGroup
 	numberChan := make(chan int)
 
-	wg.Add(2)
-	go printNumbers(numberChan, &wg)
-	generateNumbers(3, numberChan, &wg)
+	for idx := 1; idx <= 3; idx++ {
+		wg.Add(1)
+		go printNumbers(idx, numberChan, &wg)
+	}
+	generateNumbers(5, numberChan)
 
 	close(numberChan)
 
