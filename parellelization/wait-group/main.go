@@ -27,10 +27,11 @@ func main() {
 	numberChan := make(chan int)
 
 	wg.Add(2)
-	go printNumbers(&wg)
-	go generateNumbers(3, numberChan, &wg)
+	go printNumbers(numberChan, &wg)
+	generateNumbers(3, numberChan, &wg)
 
 	close(numberChan)
+
 	fmt.Println("Waiting for goroutines to finish...")
 	wg.Wait()
 	fmt.Println("Done!")
