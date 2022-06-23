@@ -23,8 +23,12 @@ func (oc OctoCat) Legs() int {
 	return 5
 }
 
+func (oc OctoCat) PrintLegs() {
+	fmt.Printf("I have %d legs\n", oc.Legs())
+}
+
 func main() {
 	var octo OctoCat
 	fmt.Println(octo.Legs()) // 5
-	octo.PrintLegs()         // I have 4 legs
+	octo.PrintLegs()         // I have 5 legs
 }
