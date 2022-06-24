@@ -3,7 +3,7 @@ package main
 import (
 	"io"
 	"strings"
-	"f"
+	"fmt"
 )
 
 func main() {
