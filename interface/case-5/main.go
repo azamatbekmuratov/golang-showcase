@@ -1,7 +1,9 @@
 // Type switches
 // A type switch is a construct that permits several type assertions in series.
 
-// A type switch is like a regular switch statement, but the cases in a type switch specify types (not values), and those values are compared against the type of the value held by the given interface value.
+// A type switch is like a regular switch statement, 
+// but the cases in a type switch specify types (not values), 
+// and those values are compared against the type of the value held by the given interface value.
 package main
 
 import "fmt"
